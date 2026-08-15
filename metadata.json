@@ -1,0 +1,6 @@
+{
+  "name": "Bola em Foco",
+  "description": "Portal de notícias, destaques, transferências e curiosidades do futebol.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
