@@ -69,21 +69,21 @@ export const SafeImage: React.FC<SafeImageProps> = ({
   }
 
   return (
-    <div className={`relative w-full h-full overflow-hidden ${className}`}>
+    <div className={`relative w-full h-full overflow-hidden bg-slate-100 ${className}`}>
       {!isLoaded && (
-        <div className="absolute inset-0 bg-slate-200 animate-pulse flex items-center justify-center">
-          <Newspaper className="w-6 h-6 text-slate-400 animate-bounce" />
+        <div className="absolute inset-0 bg-slate-200/70 flex items-center justify-center">
+          <Newspaper className="w-5 h-5 text-slate-400" />
         </div>
       )}
       <img
         src={src}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
-        referrerPolicy="no-referrer"
-        crossOrigin="anonymous"
+        decoding="async"
+        fetchPriority={priority ? 'high' : 'auto'}
         onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${
+        className={`w-full h-full object-cover transition-opacity duration-200 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         {...props}

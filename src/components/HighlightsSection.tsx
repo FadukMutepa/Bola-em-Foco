@@ -87,7 +87,7 @@ export const HighlightsSection: React.FC<HighlightsSectionProps> = ({
                     alt={item.title}
                     fallbackCategory={item.type}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    priority={true}
+                    priority={false}
                   />
                   {/* Metric overlay pill */}
                   <div className="absolute bottom-2.5 right-2.5 bg-slate-950/85 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs font-semibold border border-white/10 shadow z-10">

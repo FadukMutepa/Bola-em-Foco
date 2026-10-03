@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
-import { RotateCw, Sparkles, RefreshCcw } from 'lucide-react';
+import React from 'react';
+import { RotateCw, Sparkles, RefreshCcw, CheckCircle2 } from 'lucide-react';
 
-export const CentralRefreshBanner: React.FC = () => {
-  const [isRefreshing, setIsRefreshing] = useState(false);
+interface CentralRefreshBannerProps {
+  onRefresh: () => void;
+  isRefreshing: boolean;
+  lastUpdated?: string;
+}
 
-  const handleReload = () => {
-    setIsRefreshing(true);
-    setTimeout(() => {
+export const CentralRefreshBanner: React.FC<CentralRefreshBannerProps> = ({
+  onRefresh,
+  isRefreshing,
+  lastUpdated,
+}) => {
+  const handleClick = (e: React.MouseEvent) => {
+    if (e.ctrlKey || e.metaKey) {
       window.location.reload();
-    }, 350);
+      return;
+    }
+    onRefresh();
   };
 
   return (
@@ -30,18 +39,18 @@ export const CentralRefreshBanner: React.FC = () => {
         {/* Central Logo Button that reloads page */}
         <button
           id="central-bola-em-foco-button"
-          onClick={handleReload}
-          title="Clique para actualizar a página"
+          onClick={handleClick}
+          title="Clique para actualizar a página instantaneamente"
           aria-label="Actualizar página Bola em Foco"
-          className="group relative w-full max-w-2xl bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-700/80 hover:border-emerald-400 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-emerald-950/40 hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-[1.02] active:scale-95 cursor-pointer flex flex-col items-center"
+          className="group relative w-full max-w-2xl bg-slate-900/90 hover:bg-slate-850 border-2 border-slate-700/80 hover:border-emerald-400 rounded-3xl p-6 sm:p-10 shadow-2xl shadow-emerald-950/40 hover:shadow-emerald-500/20 transition-all duration-200 hover:scale-[1.01] active:scale-95 cursor-pointer flex flex-col items-center"
         >
           {/* Neon gradient glowing frame */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500/30 via-emerald-500/30 to-blue-500/30 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500 -z-10" />
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-500/30 via-emerald-500/30 to-blue-500/30 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-300 -z-10" />
 
           {/* Centered Brand visual matching the exact user uploaded image */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-7">
             {/* Green glowing soccer ball icon box */}
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:rotate-12 transition-transform duration-300 shrink-0">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:rotate-6 transition-transform duration-200 shrink-0">
               <svg
                 className="w-10 h-10 sm:w-12 sm:h-12 text-slate-950 fill-current"
                 viewBox="0 0 24 24"
@@ -70,12 +79,22 @@ export const CentralRefreshBanner: React.FC = () => {
 
           {/* Interactive instruction & icon */}
           <div className="mt-6 pt-5 border-t border-slate-800/80 w-full flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-emerald-400 group-hover:text-emerald-300">
-            <RefreshCcw
-              className={`w-4 h-4 ${
-                isRefreshing ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-500'
-              }`}
-            />
-            <span>{isRefreshing ? 'A actualizar o portal...' : 'Clique para actualizar a página'}</span>
+            {isRefreshing ? (
+              <>
+                <RefreshCcw className="w-4 h-4 animate-spin text-emerald-300" />
+                <span className="text-emerald-300">A actualizar portal...</span>
+              </>
+            ) : lastUpdated ? (
+              <>
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Atualizado às {lastUpdated} (Clique para atualizar)</span>
+              </>
+            ) : (
+              <>
+                <RefreshCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                <span>Clique para actualizar a página</span>
+              </>
+            )}
           </div>
         </button>
 

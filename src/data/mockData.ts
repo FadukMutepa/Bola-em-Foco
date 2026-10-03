@@ -1,13 +1,13 @@
 import { NewsArticle, HighlightItem } from '../types';
-import mateoSilvaImg from '../assets/images/player_mateo_silva_1786822810612.jpg';
-import fcAtlanticoImg from '../assets/images/fc_atlantico_team_1786822829934.jpg';
-import transferLucasImg from '../assets/images/transfer_lucas_1786822841622.jpg';
-import newsChampionsImg from '../assets/images/news_champions_1786822853777.jpg';
-import newsTransferImg from '../assets/images/news_transfer_contract_1786822866316.jpg';
-import newsClassic10Img from '../assets/images/news_classic_number10_1786822880230.jpg';
-import newsTelstarImg from '../assets/images/news_telstar_ball_1786822893957.jpg';
-import newsNationalImg from '../assets/images/news_national_team_1786822908513.jpg';
-import newsCaptainImg from '../assets/images/news_captain_leader_1786822921122.jpg';
+import mateoSilvaImg from '../assets/images/player_mateo_silva_1786822810612.webp';
+import fcAtlanticoImg from '../assets/images/fc_atlantico_team_1786822829934.webp';
+import transferLucasImg from '../assets/images/transfer_lucas_1786822841622.webp';
+import newsChampionsImg from '../assets/images/news_champions_1786822853777.webp';
+import newsTransferImg from '../assets/images/news_transfer_contract_1786822866316.webp';
+import newsClassic10Img from '../assets/images/news_classic_number10_1786822880230.webp';
+import newsTelstarImg from '../assets/images/news_telstar_ball_1786822893957.webp';
+import newsNationalImg from '../assets/images/news_national_team_1786822908513.webp';
+import newsCaptainImg from '../assets/images/news_captain_leader_1786822921122.webp';
 
 export const HERO_ARTICLE: NewsArticle = {
   id: 'hero-1',
